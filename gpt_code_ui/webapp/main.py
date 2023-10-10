@@ -17,11 +17,15 @@ from dotenv import load_dotenv
 
 from gpt_code_ui.kernel_program.main import APP_PORT as KERNEL_APP_PORT
 
-load_dotenv('.env')
+load_dotenv('/home/shawn/code/gpt-code-ui/.env')
 
+openai.api_type = os.environ.get("OPENAI_API_TYPE")
 openai.api_version = os.environ.get("OPENAI_API_VERSION")
 openai.log = os.getenv("OPENAI_API_LOGLEVEL")
 OPENAI_EXTRA_HEADERS = json.loads(os.environ.get("OPENAI_EXTRA_HEADERS", "{}"))
+
+if openai.api_type == "azure":
+    openai.api_base = os.environ.get("OPENAI_API_BASE")
 
 if openai.api_type == "open_ai":
     AVAILABLE_MODELS = json.loads(os.environ.get("OPENAI_MODELS", '''[{"displayName": "GPT-3.5", "name": "gpt-3.5-turbo"}, {"displayName": "GPT-4", "name": "gpt-4"}]'''))
@@ -105,7 +109,7 @@ async def get_code(user_prompt, user_openai_key=None, model="gpt-3.5-turbo"):
     Notes: 
         First, think step by step what you want to do and write it down in English.
         Then generate valid Python code in a code block 
-        Make sure all code is valid - it be run in a Jupyter Python 3 kernel environment. 
+        Make sure all code is valid - it will be run in a Jupyter Python 3 kernel environment. 
         Define every variable before you use it.
         For data munging, you can use 
             'numpy', # numpy==1.24.3
