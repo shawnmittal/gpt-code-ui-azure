@@ -7,6 +7,7 @@ import re
 import logging
 import sys
 import openai
+import tiktoken
 import pandas as pd
 
 from collections import deque
@@ -17,6 +18,7 @@ from dotenv import load_dotenv
 
 from gpt_code_ui.kernel_program.main import APP_PORT as KERNEL_APP_PORT
 
+# Get environmental variables and set code variables
 load_dotenv('/home/shawn/code/gpt-code-ui/.env')
 
 openai.api_type = os.environ.get("OPENAI_API_TYPE")
@@ -42,7 +44,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
 APP_PORT = int(os.environ.get("WEB_PORT", 8080))
-
+MAX_TOKEN_LIMIT = int(os.environ.get("MAX_TOKEN_LIMIT"))
 
 class LimitedLengthString:
     def __init__(self, maxlen=2000):
@@ -62,7 +64,30 @@ class LimitedLengthString:
         return result[-self.maxlen:]
 
 
-message_buffer = LimitedLengthString()
+class LimitedLengthTokenString:
+    def __init__(self, maxtokens=4000):
+        self.data = deque()
+        self.tokens = 0
+        self.maxtokens = maxtokens
+        self.encoding = tiktoken.get_encoding("cl100k_base")
+
+    def string_to_token(self, string):
+        num_tokens = len(self.encoding.encode(string))
+        return num_tokens
+
+    def append(self, string):
+        token_count = self.string_to_token(string)
+        self.data.append((string, token_count))
+        self.tokens += token_count
+        while self.tokens > self.maxtokens:
+            popped_string, popped_tokens = self.data.popleft()
+            self.tokens -= popped_tokens
+
+    def get_string(self):
+        return ''.join([string for string, token in self.data])
+
+
+message_buffer = LimitedLengthTokenString(maxtokens=MAX_TOKEN_LIMIT)
 
 
 def allowed_file(filename):

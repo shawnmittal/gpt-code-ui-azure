@@ -22,6 +22,7 @@ setup(
         'python-dotenv>=0.18,<2',
         'pandas>=1.3,<2',
         'openai>=0.25,<1',
+        'tiktoken>=0.5.1'
     ],
     entry_points={
         'console_scripts': [

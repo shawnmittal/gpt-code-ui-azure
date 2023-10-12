@@ -10,7 +10,7 @@ export default function Sidebar(props: {
   openAIKey: string;
 }) {
   const handleOpenAIButtonClick = () => {
-    const key = prompt("Please enter your OpenAI key", props.openAIKey);
+    const key = prompt("Please enter your Azure OpenAI key", props.openAIKey);
     if (key != null) {
       props.setOpenAIKey(key);
     }
@@ -19,10 +19,10 @@ export default function Sidebar(props: {
     <>
       <div className="sidebar">
         <div className="logo">
-            <AssistantIcon /> GPT-Code UI
+            <AssistantIcon /> AOAI Code<br></br>Interpreter
 
             <div className='github'>
-                <a href='https://github.com/ricklamers/gpt-code-ui'>Open Source - v{import.meta.env.VITE_APP_VERSION}</a>
+                <a href='https://github.com/shawnmittal/gpt-code-ui-azure'>Open Source - v{import.meta.env.VITE_APP_VERSION}</a>
             </div>
         </div>
         <div className="settings">
@@ -41,7 +41,7 @@ export default function Sidebar(props: {
             })}
             </select>
             <label>Credentials</label>
-            <button onClick={handleOpenAIButtonClick}>Set OpenAI key</button>
+            <button onClick={handleOpenAIButtonClick}>Set Azure OpenAI key</button>
         </div>
       </div>
     </>

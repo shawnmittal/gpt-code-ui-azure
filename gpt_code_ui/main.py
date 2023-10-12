@@ -53,17 +53,30 @@ def print_color(text, color="gray"):
 def print_banner():
         
         print("""
-█▀▀ █▀█ ▀█▀ ▄▄ █▀▀ █▀█ █▀▄ █▀▀
-█▄█ █▀▀ ░█░ ░░ █▄▄ █▄█ █▄▀ ██▄
+  ___  _____  ___  _____   _____           _         
+ / _ \|  _  |/ _ \|_   _| /  __ \         | |        
+/ /_\ \ | | / /_\ \ | |   | /  \/ ___   __| | ___    
+|  _  | | | |  _  | | |   | |    / _ \ / _` |/ _ \   
+| | | \ \_/ / | | |_| |_  | \__/\ (_) | (_| |  __/   
+\_| |_/\___/\_| |_/\___/   \____/\___/ \__,_|\___|   
+                                                     
+                                                     
+ _____      _                           _            
+|_   _|    | |                         | |           
+  | | _ __ | |_ ___ _ __ _ __  _ __ ___| |_ ___ _ __ 
+  | || '_ \| __/ _ \ '__| '_ \| '__/ _ \ __/ _ \ '__|
+ _| || | | | ||  __/ |  | |_) | | |  __/ ||  __/ |   
+ \___/_| |_|\__\___|_|  | .__/|_|  \___|\__\___|_|   
+                        | |                          
+                        |_|                          
         """)
 
-        print("> Open GPT-Code UI in your browser %s" % APP_URL)
+        print("> Open AOAI Code Interpreter in your browser %s" % APP_URL)
         print("")
         print("You can inspect detailed logs in app.log.")
         print("")
-        print("Find your OpenAI API key at https://platform.openai.com/account/api-keys")
-        print("")
-        print_color("Contribute to GPT-Code UI at https://github.com/ricklamers/gpt-code-ui")   
+        print_color("Forked from GPT-Code UI at https://github.com/ricklamers/gpt-code-ui")
+        print_color("AOAI Code Intepreter at https://github.com/shawnmittal/gpt-code-ui-azure")
 
 def main():
     setup_logging()
