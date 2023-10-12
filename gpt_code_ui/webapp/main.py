@@ -147,7 +147,9 @@ async def get_code(user_prompt, user_openai_key=None, model="gpt-3.5-turbo"):
             'pdfplumber', # pdfplumber==0.9.0
         For data visualization, you can use
             'matplotlib', # matplotlib==3.7.1
-        Be sure to generate charts with matplotlib. If you need geographical charts, use geopandas with the geopandas.datasets module.
+            'seaborn', # seaborn==0.13.0
+            'folium', # folium==0.14.0
+        Be sure to generate charts with matplotlib or seaborn. If you need geographical charts, use geopandas with the geopandas.datasets module or folium for creating maps.
         If the user has just uploaded a file, focus on the file that was most recently uploaded (and optionally all previously uploaded files)
     
     Teacher mode: if the code modifies or produces a file, at the end of the code block insert a print statement that prints a link to it as HTML string: <a href='/download?file=INSERT_FILENAME_HERE'>Download file</a>. Replace INSERT_FILENAME_HERE with the actual filename."""
