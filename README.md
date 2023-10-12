@@ -1,4 +1,4 @@
-<img src="https://github.com/ricklamers/gpt-code-ui/assets/1309307/9ad4061d-2e26-4407-9431-109b650fb022" alt="GPT-Code logo" width=240 />
+# AOAI Code Interpreter
 
 An open source implementation of OpenAI's ChatGPT [Code interpreter](https://openai.com/blog/chatgpt-plugins#code-interpreter).
 
@@ -6,27 +6,20 @@ Simply ask the OpenAI model to do something and it will generate & execute the c
 
 Read the [blog post](https://ricklamers.io/posts/gpt-code) to find out more.
 
-## Community
-Judah Cooper offered to start & curate a Discord community. Join [here](https://discord.gg/ZmTQwpkYu6).
-
-## Installation
+## Installation for Local Test/Dev
 
 Open a terminal and run:
 
-```
-pip install gpt-code-ui
+```sh
+python3 -m venv venv
+source ./venv/bin/activate
+pip install -r requirements.txt
+pip install -e .
 gptcode
 ```
 
-In order to make basic dependencies available it's recommended to run the following `pip` install
-in the Python environment that is used in the shell where you run `gptcode`:
-
-```sh
-pip install "numpy>=1.24,<1.25" "dateparser>=1.1,<1.2" "pandas>=1.5,<1.6" "geopandas>=0.13,<0.14" "tabulate>=0.9.0<1.0" "PyPDF2>=3.0,<3.1" "pdfminer>=20191125,<20191200" "pdfplumber>=0.9,<0.10" "matplotlib>=3.7,<3.8"
-```
-
 ## User interface
-<img src="https://github.com/ricklamers/gpt-code-ui/assets/1309307/c29c504a-a7ed-4ae0-9360-d7224bc3e3d6" alt="GPT-Code logo" width="100%" />
+<img src="docs/aoai_code_interp_demo.gif" alt="GPT-Code logo" width="100%" />
  
 ## Features
 - File upload
@@ -37,30 +30,24 @@ pip install "numpy>=1.24,<1.25" "dateparser>=1.1,<1.2" "pandas>=1.5,<1.6" "geopa
 - Model switching (GPT-3.5 and GPT-4)
 
 ## Misc.
-### Using .env for OpenAI key
+### Using .env for Azure OpenAI key
 You can put a .env in the working directory to load the `OPENAI_API_KEY` environment variable.
 
 ### Configurables
 Set the `API_PORT`, `WEB_PORT`, `SNAKEMQ_PORT` variables to override the defaults.
 
-Set `OPENAI_BASE_URL` to change the OpenAI API endpoint that's being used (note this environment variable includes the protocol `https://...`).
+Set the `MAX_TOKEN_LIMIT` to one that is compatible with the models you will be using. For instance, if you are using GPT-4-16k, you can increase the token limit from the default of 4,000 to slighly less than 16,000.
 
-You can use the `.env.example` in the repository (make sure you `git clone` the repo to get the file first).
 
-For Azure OpenAI Services, there are also other configurable variables like deployment name. See `.env.azure-example` for more information.
-Note that model selection on the UI is currently not supported for Azure OpenAI Services.
+Set `OPENAI_BASE_URL` to change the Azure OpenAI API endpoint that's being used (note this environment variable includes the protocol `https://...`).
+
+You can use the `.env.azure-example` in the repository (make sure you `git clone` the repo to get the file first).
 
 ```
-cp .env.example .env
+cp .env.azure-example .env
 vim .env
 gptcode
 ```
 
-### Docker
-[localagi](https://github.com/localagi) took the effort of bundling the Python package in a Docker container. Check it out here: [gpt-code-ui-docker](https://github.com/localagi/gpt-code-ui-docker).
-
-## Contributing
-Please do and have a look at the [contributions guide](.github/CONTRIBUTING.md)! This should be a community initiative. I'll try my best to be responsive.
-
-
-Thank you for your interest in this project!
+## Original Code Credit
+The original code base this repo is built on is from [Rick Lamers](https://github.com/ricklamers). Here is the repository this repo is forked from [GPT-Code UI](https://github.com/ricklamers/gpt-code-ui).
