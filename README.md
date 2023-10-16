@@ -5,6 +5,7 @@ An open source implementation of OpenAI's ChatGPT [Code interpreter](https://ope
 Simply ask the OpenAI model to do something and it will generate & execute the code for you.
 
 ## Installation for Local Test/Dev
+This installation process assumes you have node and Python 3.9 or greater installed.
 
 Open a terminal and run:
 
@@ -13,6 +14,7 @@ python3 -m venv venv
 source ./venv/bin/activate
 pip install -r requirements.txt
 pip install -e .
+make compile_frontend
 gptcode
 ```
 
