@@ -4,8 +4,6 @@ An open source implementation of OpenAI's ChatGPT [Code interpreter](https://ope
 
 Simply ask the OpenAI model to do something and it will generate & execute the code for you.
 
-Read the [blog post](https://ricklamers.io/posts/gpt-code) to find out more.
-
 ## Installation for Local Test/Dev
 
 Open a terminal and run:
@@ -36,7 +34,7 @@ You can put a .env in the working directory to load the `OPENAI_API_KEY` environ
 ### Configurables
 Set the `API_PORT`, `WEB_PORT`, `SNAKEMQ_PORT` variables to override the defaults.
 
-Set the `MAX_TOKEN_LIMIT` to one that is compatible with the models you will be using. For instance, if you are using GPT-4-16k, you can increase the token limit from the default of 4,000 to slighly less than 16,000.
+Set the `MAX_TOKEN_LIMIT` to one that is compatible with the models you will be using. For instance, if you are using GPT-4-32k, you can increase the token limit from the default of 430,000 to slighly less than 32,000.
 
 
 Set `OPENAI_BASE_URL` to change the Azure OpenAI API endpoint that's being used (note this environment variable includes the protocol `https://...`).
